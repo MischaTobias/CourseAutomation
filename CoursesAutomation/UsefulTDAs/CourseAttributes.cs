@@ -10,8 +10,10 @@
         public string Hora_fin { get; set; }
         public string Dia { get; set; }
         public string Curso { get; set; }
-        public int TotalInscritos { get; set; }
 
+        public int TotalInscritos { get; set; }
         public string Teoprac { get; set; }
+        public int CupoApartado { get; set; }
+        public int Cola { get; set; }
     }
 }
