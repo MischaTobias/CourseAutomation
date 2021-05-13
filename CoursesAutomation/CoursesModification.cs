@@ -59,7 +59,7 @@ namespace CoursesAutomation
             cbSheets.Items.AddRange(sheetNames.ToArray());
             cbSheets.SelectedIndex = 0;
             cbCFIORNOT.Items.Add("Documento CFI");
-            cbCFIORNOT.Items.Add("Documento Normal");
+            cbCFIORNOT.Items.Add("Documento Ingeniería");
             lblFile.Text = onlyFileName;
         }
 
@@ -120,6 +120,8 @@ namespace CoursesAutomation
                 if (cbCFIORNOT.SelectedItem == null)
                 {
                     MessageBox.Show("Por favor seleccione un tipo de documento");
+                    lblFile.Text = auxvalue;
+                    EnableBeforeCourseLoad(true);
                     return;
                 }
 
@@ -162,7 +164,7 @@ namespace CoursesAutomation
             }
         }
 
-        private void FillNotValidDGV(List<CourseAttributes> courses)
+        private void FillNotValidDGV(List<CourseAttributes> courses, bool byQueue)
         {
             dgvNoCumplen[0, 0].Value = "No. Sección";
             dgvNoCumplen[1, 0].Value = "Curso";
@@ -173,6 +175,11 @@ namespace CoursesAutomation
             dgvNoCumplen[6, 0].Value = "Hora Inicio";
             dgvNoCumplen[7, 0].Value = "Hora Fin";
             dgvNoCumplen[8, 0].Value = "Total Inscritos";
+            if (byQueue)
+            {
+                dgvNoCumplen[9, 0].Value = "Cupo Apartado";
+                dgvNoCumplen[10, 0].Value = "Cola";
+            }
             dgvNoCumplen.Rows[0].Frozen = true;
             for (int i = 1; i < courses.Count + 1; i++)
             {
@@ -185,10 +192,15 @@ namespace CoursesAutomation
                 dgvNoCumplen[6, i].Value = courses[i-1].Hora_Inicio;
                 dgvNoCumplen[7, i].Value = courses[i-1].Hora_fin;
                 dgvNoCumplen[8, i].Value = courses[i - 1].TotalInscritos;
+                if (byQueue)
+                {
+                    dgvNoCumplen[9, i].Value = courses[i-1].CupoApartado;
+                    dgvNoCumplen[10, i].Value = courses[i-1].Cola;
+                }
             }
         }
 
-        private void FillValidDGV(List<CourseAttributes> courses)
+        private void FillValidDGV(List<CourseAttributes> courses, bool byQueue)
         {
             dgvCumplen[0, 0].Value = "No. Sección";
             dgvCumplen[1, 0].Value = "Curso";
@@ -199,6 +211,11 @@ namespace CoursesAutomation
             dgvCumplen[6, 0].Value = "Hora Inicio";
             dgvCumplen[7, 0].Value = "Hora Fin";
             dgvCumplen[8, 0].Value = "Total Inscritos";
+            if (byQueue)
+            {
+                dgvCumplen[9, 0].Value = "Cupo Apartado";
+                dgvCumplen[10, 0].Value = "Cola";
+            }
             dgvCumplen.Rows[0].Frozen = true;
             for (int i = 1; i < courses.Count + 1; i++)
             {
@@ -211,6 +228,11 @@ namespace CoursesAutomation
                 dgvCumplen[6, i].Value = courses[i-1].Hora_Inicio;
                 dgvCumplen[7, i].Value = courses[i-1].Hora_fin;
                 dgvCumplen[8, i].Value = courses[i - 1].TotalInscritos;
+                if (byQueue)
+                {
+                    dgvCumplen[9, i].Value = courses[i - 1].CupoApartado;
+                    dgvCumplen[10, i].Value = courses[i - 1].Cola;
+                }
             }
         }
 
@@ -277,40 +299,59 @@ namespace CoursesAutomation
                     {
                         validCourses = CoursesManager.GetValidCoursesByRoom(null);
                         notValidCourses = CoursesManager.GetNotValidCoursesByRoom(null);
+                        RedimensionValidDGV(validCourses.Count + 1, 9);
+                        RedimensionNotValidDGV(notValidCourses.Count + 1, 9);
+                        FillNotValidDGV(notValidCourses, false);
+                        FillValidDGV(validCourses, false);
                     }
                     else
                     {
-                        validCourses = CoursesManager.GetNotValidCoursesByQueue(null);
+                        validCourses = CoursesManager.GetValidCoursesByQueue(null);
                         notValidCourses = CoursesManager.GetNotValidCoursesByQueue(null);
+                        RedimensionValidDGV(validCourses.Count + 1, 11);
+                        RedimensionNotValidDGV(notValidCourses.Count + 1, 11);
+                        FillNotValidDGV(notValidCourses, true);
+                        FillValidDGV(validCourses,true);
                     }
-
-                    RedimensionValidDGV(validCourses.Count + 1, 9);
-                    RedimensionNotValidDGV(notValidCourses.Count + 1, 9);
-                    FillNotValidDGV(notValidCourses);
-                    FillValidDGV(validCourses);
                     return;
+                }
+
+                if (courseName.Contains("Teo"))
+                {
+                    courseName = courseName[0..^6] + "1";
+                }
+                else
+                {
+                    courseName = courseName[0..^6] + "0";
                 }
 
                 if (ByRoom)
                 {
                     validCourses = CoursesManager.GetValidCoursesByRoom(courseName);
                     notValidCourses = CoursesManager.GetNotValidCoursesByRoom(courseName);
+                    RedimensionValidDGV(validCourses.Count + 1, 9);
+                    RedimensionNotValidDGV(notValidCourses.Count + 1, 9);
+                    FillNotValidDGV(notValidCourses, false);
+                    FillValidDGV(validCourses, false);
                 }
                 else
                 {
-                    validCourses = CoursesManager.GetNotValidCoursesByQueue(courseName);
+                    validCourses = CoursesManager.GetValidCoursesByQueue(courseName);
                     notValidCourses = CoursesManager.GetNotValidCoursesByQueue(courseName);
+                    RedimensionValidDGV(validCourses.Count + 1, 11);
+                    RedimensionNotValidDGV(notValidCourses.Count + 1, 11);
+                    FillNotValidDGV(notValidCourses, true);
+                    FillValidDGV(validCourses, true);
                 }
 
-                RedimensionValidDGV(validCourses.Count + 1, 9);
-                RedimensionNotValidDGV(notValidCourses.Count + 1, 9);
-                FillNotValidDGV(notValidCourses);
-                FillValidDGV(validCourses);
-
-                for (int i = 0; i < 9; i++)
+                foreach (DataGridViewColumn column in dgvCumplen.Columns)
                 {
-                    dgvNoCumplen.AutoResizeColumn(i);
-                    dgvCumplen.AutoResizeColumn(i);
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+
+                foreach (DataGridViewColumn column in dgvNoCumplen.Columns)
+                {
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
             }
         }

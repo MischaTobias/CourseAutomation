@@ -242,7 +242,8 @@ namespace CoursesAutomation
             this.Controls.Add(this.lblFile);
             this.Controls.Add(this.BtnSeleccionarArchivo);
             this.Name = "CoursesModification";
-            this.Text = "CoursesModification";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Validez Secciones";
             ((System.ComponentModel.ISupportInitialize)(this.dgvNoCumplen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCumplen)).EndInit();
             this.ResumeLayout(false);

@@ -45,7 +45,23 @@ namespace CoursesAutomation
             }
         }
 
-        public static List<string> GetKeys() => Storage.Instance.CoursesByRoom.Keys.ToList();
+        public static List<string> GetKeys()
+        {
+            var tempList = Storage.Instance.CoursesByRoom.Keys.ToList();
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                if (tempList[i][^1].ToString() == "1")
+                {
+                    tempList[i] = tempList[i][0..^1] + "Teoría";
+                }
+                else
+                {
+                    tempList[i] = tempList[i][0..^1] + "Práctica";
+                }
+            }
+            tempList.Sort();
+            return tempList;
+        }
 
         public static void SortByRoom()
         {
