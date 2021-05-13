@@ -103,6 +103,7 @@ namespace CoursesAutomation
             // 
             this.dgvNoCumplen.AllowUserToAddRows = false;
             this.dgvNoCumplen.AllowUserToDeleteRows = false;
+            this.dgvNoCumplen.AllowUserToResizeRows = false;
             this.dgvNoCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvNoCumplen.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -143,6 +144,7 @@ namespace CoursesAutomation
             // 
             this.dgvCumplen.AllowUserToAddRows = false;
             this.dgvCumplen.AllowUserToDeleteRows = false;
+            this.dgvCumplen.AllowUserToResizeRows = false;
             this.dgvCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
