@@ -64,9 +64,9 @@ namespace CoursesAutomation
             this.lblFile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblFile.Location = new System.Drawing.Point(189, 32);
             this.lblFile.Name = "lblFile";
-            this.lblFile.Size = new System.Drawing.Size(107, 21);
+            this.lblFile.Size = new System.Drawing.Size(98, 21);
             this.lblFile.TabIndex = 1;
-            this.lblFile.Text = "ejemplo.xlsx";
+            this.lblFile.Text = "ejemplo.xls";
             // 
             // cbSheets
             // 
