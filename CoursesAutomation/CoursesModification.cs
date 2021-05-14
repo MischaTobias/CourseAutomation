@@ -181,7 +181,6 @@ namespace CoursesAutomation
                 dgvNoCumplen.Columns[10].HeaderText = "Cupo Apartado";
                 dgvNoCumplen.Columns[11].HeaderText = "Cola";
             }
-            dgvNoCumplen.Rows[0].Frozen = true;
             for (int i = 0; i < courses.Count; i++)
             {
                 dgvNoCumplen[0, i].Value = courses[i].Seccion;
@@ -226,7 +225,6 @@ namespace CoursesAutomation
                 dgvCumplen.Columns[10].HeaderText = "Cupo Apartado";
                 dgvCumplen.Columns[11].HeaderText = "Cola";
             }
-            dgvCumplen.Rows[0].Frozen = true;
             for (int i = 0; i < courses.Count; i++)
             {
                 dgvCumplen[0, i].Value = courses[i].Seccion;
