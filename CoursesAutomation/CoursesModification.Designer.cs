@@ -119,6 +119,9 @@ namespace CoursesAutomation
             // 
             // lblNoCumplen
             // 
+            this.lblNoCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNoCumplen.AutoSize = true;
             this.lblNoCumplen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblNoCumplen.Location = new System.Drawing.Point(12, 216);
@@ -129,9 +132,7 @@ namespace CoursesAutomation
             // 
             // lblCumplen
             // 
-            this.lblCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCumplen.AutoSize = true;
             this.lblCumplen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblCumplen.Location = new System.Drawing.Point(12, 383);
@@ -145,9 +146,7 @@ namespace CoursesAutomation
             this.dgvCumplen.AllowUserToAddRows = false;
             this.dgvCumplen.AllowUserToDeleteRows = false;
             this.dgvCumplen.AllowUserToResizeRows = false;
-            this.dgvCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCumplen.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvCumplen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCumplen.Location = new System.Drawing.Point(12, 421);
@@ -244,6 +243,7 @@ namespace CoursesAutomation
             this.Name = "CoursesModification";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Validez Secciones";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvNoCumplen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCumplen)).EndInit();
             this.ResumeLayout(false);

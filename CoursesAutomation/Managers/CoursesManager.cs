@@ -22,12 +22,10 @@ namespace CoursesAutomation
                     Jornada = xlWorksheet.Cells[i, 4].value,
                     Catedratico = xlWorksheet.Cells[i, 25].value,
                     Salon = xlWorksheet.Cells[i, 21].value,
-                    Hora_Inicio = xlWorksheet.Cells[i, 22].value,
-                    Hora_fin = xlWorksheet.Cells[i, 23].value,
-                    Dia = xlWorksheet.Cells[i, 24].value,
+                    Horarios = $"{xlWorksheet.Cells[i, 24].value} → {xlWorksheet.Cells[i, 22].value} - {xlWorksheet.Cells[i, 23].value}",
                     Curso = xlWorksheet.Cells[i, 10].value,
                     Teoprac = xlWorksheet.Cells[i, 8].value,
-                    TotalInscritos = Convert.ToInt32(xlWorksheet.Cells[i, 7].value),
+                    TotalInscritos = Convert.ToInt32(xlWorksheet.Cells[i, 7].value) + Convert.ToInt32(xlWorksheet.Cells[i, 16].value),
                     Cola = Convert.ToInt32(xlWorksheet.Cells[i, 18].value),
                     CupoApartado = Convert.ToInt32(xlWorksheet.Cells[i, 17].value)
                 };

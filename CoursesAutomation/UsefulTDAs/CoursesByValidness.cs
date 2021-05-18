@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CoursesAutomation
@@ -19,6 +20,10 @@ namespace CoursesAutomation
             var exists = NotValidCourses.FirstOrDefault(c => c.Seccion == course.Seccion);
             if (exists != null)
             {
+                if (!exists.Horarios.Contains(course.Horarios))
+                {
+                    exists.Horarios += $"{Environment.NewLine}{course.Horarios}";
+                }
                 return;
             }
             NotValidCourses.Add(course);
@@ -29,6 +34,10 @@ namespace CoursesAutomation
             var exists = ValidCourses.FirstOrDefault(c => c.Seccion == course.Seccion);
             if (exists != null)
             {
+                if (!exists.Horarios.Contains(course.Horarios))
+                {
+                    exists.Horarios += $"{Environment.NewLine}{course.Horarios}";
+                }
                 return;
             }
             ValidCourses.Add(course);

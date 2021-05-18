@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -10,6 +11,21 @@ namespace CoursesAutomation
         public CoursesModification()
         {
             InitializeComponent();
+            this.Resize += new EventHandler(ResizeDGVs);
+        }
+
+        private void ResizeDGVs(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                dgvNoCumplen.Size = new Size(1344, 220);
+                dgvCumplen.Size = new Size(1344, 215);
+            }
+            else
+            {
+                dgvNoCumplen.Size = new Size(1175, 120);
+                dgvCumplen.Size = new Size(1175, 120);
+            }
         }
 
         private void BtnSeleccionarArchivo_Click(object sender, System.EventArgs e)
@@ -110,8 +126,8 @@ namespace CoursesAutomation
 
         private void BtnLoadCourses_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 EnableAllItems(false);
                 Refresh();
                 var auxvalue = lblFile.Text;
@@ -142,13 +158,13 @@ namespace CoursesAutomation
 
                 EnableAfterFilterChange(true);
                 lblFile.Text = auxvalue;
-            //}
-            //catch
-            //{
-            //    ClearComboBoxes();
-            //    EnableBeforeFileLoad(true);
-            //    MessageBox.Show("El formato del archivo de entrada es incorrecto, \npor favor inténtelo nuevamente.");
-            //}
+            }
+            catch
+            {
+                ClearComboBoxes();
+                EnableBeforeFileLoad(true);
+                MessageBox.Show("El formato del archivo de entrada es incorrecto, \npor favor inténtelo nuevamente.");
+            }
             Refresh();
         }
 
@@ -172,14 +188,12 @@ namespace CoursesAutomation
             dgvNoCumplen.Columns[3].HeaderText = "Jornada";
             dgvNoCumplen.Columns[4].HeaderText = "Catedrático";
             dgvNoCumplen.Columns[5].HeaderText = "Salón";
-            dgvNoCumplen.Columns[6].HeaderText = "Día";
-            dgvNoCumplen.Columns[7].HeaderText = "Hora Inicio";
-            dgvNoCumplen.Columns[8].HeaderText = "Hora Fin";
-            dgvNoCumplen.Columns[9].HeaderText = "Total Inscritos";
+            dgvNoCumplen.Columns[6].HeaderText = "Horarios";
+            dgvNoCumplen.Columns[7].HeaderText = "Total Inscritos";
             if (byQueue)
             {
-                dgvNoCumplen.Columns[10].HeaderText = "Cupo Apartado";
-                dgvNoCumplen.Columns[11].HeaderText = "Cola";
+                dgvNoCumplen.Columns[8].HeaderText = "Cupo Apartado";
+                dgvNoCumplen.Columns[9].HeaderText = "Cola";
             }
             for (int i = 0; i < courses.Count; i++)
             {
@@ -196,14 +210,12 @@ namespace CoursesAutomation
                 dgvNoCumplen[3, i].Value = courses[i].Jornada;
                 dgvNoCumplen[4, i].Value = courses[i].Catedratico;
                 dgvNoCumplen[5, i].Value = courses[i].Salon;
-                dgvNoCumplen[6, i].Value = courses[i].Dia;
-                dgvNoCumplen[7, i].Value = courses[i].Hora_Inicio;
-                dgvNoCumplen[8, i].Value = courses[i].Hora_fin;
-                dgvNoCumplen[9, i].Value = courses[i].TotalInscritos;
+                dgvNoCumplen[6, i].Value = courses[i].Horarios;
+                dgvNoCumplen[7, i].Value = courses[i].TotalInscritos;
                 if (byQueue)
                 {
-                    dgvNoCumplen[10, i].Value = courses[i].CupoApartado;
-                    dgvNoCumplen[11, i].Value = courses[i].Cola;
+                    dgvNoCumplen[8, i].Value = courses[i].CupoApartado;
+                    dgvNoCumplen[9, i].Value = courses[i].Cola;
                 }
             }
         }
@@ -216,14 +228,12 @@ namespace CoursesAutomation
             dgvCumplen.Columns[3].HeaderText = "Jornada";
             dgvCumplen.Columns[4].HeaderText = "Catedrático";
             dgvCumplen.Columns[5].HeaderText = "Salón";
-            dgvCumplen.Columns[6].HeaderText = "Día";
-            dgvCumplen.Columns[7].HeaderText = "Hora Inicio";
-            dgvCumplen.Columns[8].HeaderText = "Hora Fin";
-            dgvCumplen.Columns[9].HeaderText = "Total Inscritos";
+            dgvCumplen.Columns[6].HeaderText = "Horarios";
+            dgvCumplen.Columns[7].HeaderText = "Total Inscritos";
             if (byQueue)
             {
-                dgvCumplen.Columns[10].HeaderText = "Cupo Apartado";
-                dgvCumplen.Columns[11].HeaderText = "Cola";
+                dgvCumplen.Columns[8].HeaderText = "Cupo Apartado";
+                dgvCumplen.Columns[9].HeaderText = "Cola";
             }
             for (int i = 0; i < courses.Count; i++)
             {
@@ -240,14 +250,12 @@ namespace CoursesAutomation
                 dgvCumplen[3, i].Value = courses[i].Jornada;
                 dgvCumplen[4, i].Value = courses[i].Catedratico;
                 dgvCumplen[5, i].Value = courses[i].Salon;
-                dgvCumplen[6, i].Value = courses[i].Dia;
-                dgvCumplen[7, i].Value = courses[i].Hora_Inicio;
-                dgvCumplen[8, i].Value = courses[i].Hora_fin;
-                dgvCumplen[9, i].Value = courses[i].TotalInscritos;
+                dgvCumplen[6, i].Value = courses[i].Horarios;
+                dgvCumplen[7, i].Value = courses[i].TotalInscritos;
                 if (byQueue)
                 {
-                    dgvCumplen[10, i].Value = courses[i].CupoApartado;
-                    dgvCumplen[11, i].Value = courses[i].Cola;
+                    dgvCumplen[8, i].Value = courses[i].CupoApartado;
+                    dgvCumplen[9, i].Value = courses[i].Cola;
                 }
             }
         }
@@ -315,8 +323,8 @@ namespace CoursesAutomation
                     {
                         validCourses = CoursesManager.GetValidCoursesByRoom(null);
                         notValidCourses = CoursesManager.GetNotValidCoursesByRoom(null);
-                        RedimensionValidDGV(validCourses.Count, 10);
-                        RedimensionNotValidDGV(notValidCourses.Count, 10);
+                        RedimensionValidDGV(validCourses.Count, 8);
+                        RedimensionNotValidDGV(notValidCourses.Count, 8);
                         FillNotValidDGV(notValidCourses, false);
                         FillValidDGV(validCourses, false);
                     }
@@ -324,11 +332,13 @@ namespace CoursesAutomation
                     {
                         validCourses = CoursesManager.GetValidCoursesByQueue(null);
                         notValidCourses = CoursesManager.GetNotValidCoursesByQueue(null);
-                        RedimensionValidDGV(validCourses.Count, 12);
-                        RedimensionNotValidDGV(notValidCourses.Count, 12);
+                        RedimensionValidDGV(validCourses.Count, 10);
+                        RedimensionNotValidDGV(notValidCourses.Count, 10);
                         FillNotValidDGV(notValidCourses, true);
                         FillValidDGV(validCourses,true);
                     }
+
+                    ModifyDGVsDimensions();
                     return;
                 }
 
@@ -345,8 +355,8 @@ namespace CoursesAutomation
                 {
                     validCourses = CoursesManager.GetValidCoursesByRoom(courseName);
                     notValidCourses = CoursesManager.GetNotValidCoursesByRoom(courseName);
-                    RedimensionValidDGV(validCourses.Count, 10);
-                    RedimensionNotValidDGV(notValidCourses.Count, 10);
+                    RedimensionValidDGV(validCourses.Count, 8);
+                    RedimensionNotValidDGV(notValidCourses.Count, 8);
                     FillNotValidDGV(notValidCourses, false);
                     FillValidDGV(validCourses, false);
                 }
@@ -354,21 +364,31 @@ namespace CoursesAutomation
                 {
                     validCourses = CoursesManager.GetValidCoursesByQueue(courseName);
                     notValidCourses = CoursesManager.GetNotValidCoursesByQueue(courseName);
-                    RedimensionValidDGV(validCourses.Count, 12);
-                    RedimensionNotValidDGV(notValidCourses.Count, 12);
+                    RedimensionValidDGV(validCourses.Count, 10);
+                    RedimensionNotValidDGV(notValidCourses.Count, 10);
                     FillNotValidDGV(notValidCourses, true);
                     FillValidDGV(validCourses, true);
                 }
 
-                foreach (DataGridViewColumn column in dgvCumplen.Columns)
-                {
-                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                }
+                ModifyDGVsDimensions();
+            }
+        }
 
-                foreach (DataGridViewColumn column in dgvNoCumplen.Columns)
-                {
-                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                }
+        private void ModifyDGVsDimensions()
+        {
+            dgvCumplen.Columns[1].Width = 400;
+            dgvCumplen.Columns[4].Width = 400;
+            dgvCumplen.Columns[6].Width = 130;
+            dgvNoCumplen.Columns[1].Width = 400;
+            dgvNoCumplen.Columns[4].Width = 400;
+            dgvNoCumplen.Columns[6].Width = 130;
+            foreach (DataGridViewColumn column in dgvCumplen.Columns)
+            {
+                column.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            }
+            foreach (DataGridViewColumn column in dgvNoCumplen.Columns)
+            {
+                column.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
         }
     }
