@@ -104,7 +104,8 @@ namespace CoursesAutomation
             this.dgvNoCumplen.AllowUserToAddRows = false;
             this.dgvNoCumplen.AllowUserToDeleteRows = false;
             this.dgvNoCumplen.AllowUserToResizeRows = false;
-            this.dgvNoCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvNoCumplen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvNoCumplen.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvNoCumplen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvNoCumplen.Location = new System.Drawing.Point(12, 255);
