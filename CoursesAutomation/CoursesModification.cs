@@ -18,14 +18,17 @@ namespace CoursesAutomation
         {
             if (WindowState == FormWindowState.Maximized)
             {
-                dgvNoCumplen.Size = new Size(1344, 220);
-                dgvCumplen.Size = new Size(1344, 215);
+                dgvNoCumplen.Size = new Size(dgvNoCumplen.Size.Width, 220);
+                dgvCumplen.Size = new Size(dgvCumplen.Size.Width, 215);
             }
             else
             {
-                dgvNoCumplen.Size = new Size(1175, 120);
-                dgvCumplen.Size = new Size(1175, 120);
+                dgvNoCumplen.Size = new Size(dgvNoCumplen.Size.Width, 120);
+                dgvCumplen.Size = new Size(dgvCumplen.Size.Width, 120);
             }
+            dgvNoCumplen.Refresh();
+            dgvCumplen.Refresh();
+            Refresh();
         }
 
         private void BtnSeleccionarArchivo_Click(object sender, System.EventArgs e)
